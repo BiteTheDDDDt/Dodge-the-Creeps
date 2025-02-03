@@ -4,6 +4,9 @@ extends Node
 var score
 
 func game_over():
+	$Player.hide() # Player disappears after being hit.
+	# Must be deferred as we can't change physics properties on a physics callback.
+	$Player.get_node("CollisionShape2D").set_deferred("disabled", true)
 	$ScoreTimer.stop()
 	$MobTimer.stop()
 	$HUD.show_game_over()
@@ -18,6 +21,13 @@ func new_game():
 	$HUD.update_score(score)
 	$HUD.show_message("Get Ready", true)
 	$Music.play()
+
+func pause_game():
+	if $ScoreTimer.is_stopped():
+		return
+	get_tree().paused = true
+	$HUDPause.show()
+
 
 func _on_start_timer_timeout() -> void:
 	$MobTimer.start()
@@ -55,3 +65,7 @@ func _on_mob_timer_timeout() -> void:
 
 func _ready():
 	pass
+
+func _process(delta: float) -> void:
+	if Input.is_action_pressed("pause_game"):
+		pause_game()

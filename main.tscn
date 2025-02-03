@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=4 uid="uid://drosdga4blgrw"]
+[gd_scene load_steps=10 format=4 uid="uid://drosdga4blgrw"]
 
 [ext_resource type="PackedScene" uid="uid://cam7yl1n3kipa" path="res://player.tscn" id="1_5nsy1"]
 [ext_resource type="Script" path="res://main.gd" id="1_qioyr"]
 [ext_resource type="PackedScene" uid="uid://deqhq7i1nkyu1" path="res://mob.tscn" id="2_xkes3"]
 [ext_resource type="PackedScene" uid="uid://l16nujhdfrvb" path="res://hud.tscn" id="4_m02jf"]
 [ext_resource type="AudioStream" uid="uid://dyv6nx5v4e211" path="res://arts/gameover.wav" id="5_3j350"]
+[ext_resource type="PackedScene" uid="uid://b6y4cfbrrm4n2" path="res://hud_pause.tscn" id="6_48v0w"]
 
 [sub_resource type="Curve2D" id="Curve2D_oik02"]
 _data = {
@@ -61,6 +62,8 @@ stream = SubResource("AudioStreamOggVorbis_5im74")
 
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_3j350")
+
+[node name="HUDPause" parent="." instance=ExtResource("6_48v0w")]
 
 [connection signal="hit" from="Player" to="." method="game_over"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]

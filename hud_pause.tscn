@@ -4,6 +4,7 @@
 [ext_resource type="FontFile" uid="uid://c5cmasm1k3p28" path="res://fonts/Xolonium-Regular.ttf" id="1_cjrbj"]
 
 [node name="HUDPause" type="CanvasLayer"]
+process_mode = 2
 script = ExtResource("1_7j8kt")
 
 [node name="Label" type="Label" parent="."]
